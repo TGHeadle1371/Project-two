@@ -1,0 +1,27 @@
+{
+  "name": "expresslogin",
+  "version": "1.0.0",
+  "description": "Node Express Handlebars login with bcrypt",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "handlebars"
+  ],
+  "author": "Thomas Headle",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.4",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "express-session": "^1.15.6",
+    "morgan": "^1.9.1",
+    "mysql2": "^1.6.5",
+    "path": "^0.12.7",
+    "sequelize": "^5.1.0"
+  }
+}
