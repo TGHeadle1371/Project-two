@@ -30,7 +30,7 @@ app.use(express.static(__dirname + "/app/public"));
 // initialize express-session to allow us track the logged-in user across sessions.
 app.use(session({
     key: 'user_sid',
-    secret: 'somerandonstuffs',
+    secret: 'somerandomstuffs',
     resave: false,
     saveUninitialized: false,
     cookie: {
