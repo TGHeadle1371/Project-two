@@ -22,6 +22,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // initialize cookie-parser to allow us access the cookies stored in the browser. 
 app.use(cookieParser());
+//Use public 
+app.use(express.static("public"));
+//Use public directory
+app.use(express.static(__dirname + "/app/public"));
 
 // initialize express-session to allow us track the logged-in user across sessions.
 app.use(session({
