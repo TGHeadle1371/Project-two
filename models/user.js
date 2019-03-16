@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 // Salted hash
 var bcrypt = require('bcrypt');
 
-var sequelize = new Sequelize('ourDatabase', 'root', 'password', {
+var sequelize = new Sequelize('ourDatabase', 'root', 'Junior07!', {
     host: 'localhost',
     port: 3306,
     dialect: 'mysql',
@@ -44,8 +44,9 @@ User.prototype.validPassword = function(password) {
 };
 
 // Create all defined tables in the specified db
+var syncOptions = { force: true };
 
-sequelize.sync()
+sequelize.sync(syncOptions)
 .then(function (){
     console.log('User tables successfully created if one didn\'t already exist!');
 })
