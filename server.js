@@ -22,11 +22,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // initialize cookie-parser to allow us access the cookies stored in the browser. 
 app.use(cookieParser());
+//Use public 
+app.use(express.static("public"));
+//Use public directory
+app.use(express.static(__dirname + "/app/public"));
 
 // initialize express-session to allow us track the logged-in user across sessions.
 app.use(session({
     key: 'user_sid',
-    secret: 'somerandonstuffs',
+    secret: 'somerandomstuffs',
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -47,7 +51,7 @@ app.use((req, res, next) => {
     next();
 });
 
-var hbsContent = { userName: '', loggedin: false, title: "You are not logged in today", body: "Hello World" };
+var hbsContent = { userName: '', loggedin: false, title: "You are not logged in today", body: "Please login to continue!" };
 
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
@@ -123,8 +127,7 @@ app.get('/dashboard', (req, res) => {
         //console.log(JSON.stringify(req.session.user)); 
         console.log(req.session.user.username);
         hbsContent.title = "You are logged in";
-        //res.sendFile(__dirname + '/public/dashboard.html');
-        res.render('index', hbsContent);
+        res.render('dashboard', hbsContent);
     } else {
         res.redirect('/login');
     }
@@ -138,7 +141,6 @@ app.get('/exercise', (req, res) => {
         //console.log(JSON.stringify(req.session.user)); 
         console.log(req.session.user.username);
         hbsContent.title = "You are logged in";
-        //res.sendFile(__dirname + '/public/dashboard.html');
         res.render('exercise', hbsContent);
     } else {
         res.redirect('/login');

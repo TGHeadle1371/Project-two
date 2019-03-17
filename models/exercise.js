@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('ourDatabase', 'root', 'Junior07!', {
+var sequelize = new Sequelize('ourDatabase', 'root', 'password', {
     host: 'localhost',
     port: 3306,
     dialect: 'mysql',
@@ -29,7 +29,11 @@ var Exercise = sequelize.define("Exercise", {
 
 
 // Create all defined tables in the specified db
-var syncOptions = { force: true };
+var syncOptions = { force: false };
+
+if (process.env.NODE_ENV === "test") {
+    syncOptions.force = true;
+}
 
 sequelize.sync(syncOptions)
 .then(function (){
