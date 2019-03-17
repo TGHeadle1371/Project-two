@@ -8,14 +8,22 @@
     </div>
   </div>
 </div>
-
-
-<div class="container-fluid mt-3">
-  <div class="row justify-content-md-center">
-    <div class="col-md-6 justify-content-center">
-
-      {{!-- <h2 class="text-black">Exercises</h2> --}}
-
+<br>
+<div class="jumbotron text-center">
+  <div class="row">
+    <div class="col-md-6 push-left">
+      <h2 class="text-black justify-content-center text-center">Add an exercise to your favorites!</h2>
+      <form class="create-update-form justify-content-center">
+        <div class="form-group justify-content-center">
+          <label for="ca" class="text-black text-center"></label>
+          <textarea style="border-radius: 10px;" class="text-center" type="text" id="ca" name="exercise"
+            placeholder="Type an Exercise here!"></textarea>
+          <button type="submit button" id="add" class="btn btn-lg btn-success mb-5">Create Exercise</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6 push-right">
+      <h2 class="text-black">Exercises</h2>
       <ul>
         {{#each exercises}}
         <li>
@@ -24,49 +32,27 @@
             <button class="deletebutton btn btn-outline-primary" id="delete" data-id="{{id}}">Delete Exercise</button>
           </p>
         </li>
-
         {{/each}}
       </ul>
     </div>
-
-
-    <div class="col-md-6 justify-content-center">
-      {{!-- <h2 class="text-black">Exercise Videos</h2> --}}
-
-      <ul>
-        {{#each exercises}}
-
-        <li>
-          <p class="text-black">
-            {{this.Exercise}}
-          </p>
-        </li>
-
-        {{/each}}
-      </ul>
-    </div>
-
+    <br>
   </div>
-
 </div>
-
-<br>
-
-<div class="jumbotron text-center">
-  <div class="row">
-    <div class="col-md-12">
-      <h2 class="text-black justify-content-center text-center">Add an exercise!</h2>
-      <br>
-      <div class="row">
-        <div class="col-md-12">
-          <form class="create-update-form justify-content-center">
-            <div class="form-group justify-content-center">
-              <label for="ca" class="text-black text-center"></label>
-              <textarea style="border-radius: 10px;" class="text-center" type="text" id="ca" name="exercise" placeholder="Type an Exercise here!"></textarea>
-              <button type="submit button" id="add" class="btn btn-lg btn-success mb-5">Create Exercise</button>
-            </div>
-          </form>
-        </div>
+<div class="row">
+  <div class="col-lg-12">
+    <p>YouTube Data API Quickstart</p>
+    <h3>Search for an exercise video below!</h3>
+    <hr>
+    <br>
+    <div class="row">
+      <div class="col-md-12 col-md-offset-3">
+        <form action="#">
+          <p><input type="text" id="search" placeholder="Type something..." autocomplete="off"
+              class="form-control text-center" />
+          </p>
+          <p><input type="submit" value="Search" class="form-control btn btn-success w100"></p>
+        </form>
+        <div id="results"></div>
       </div>
     </div>
   </div>
