@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Welcome,
+        {{# if loggedin}}
+        {{userName}}
+        {{/if}} are you ready to <strong>Train</strong>?</h1>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid mt-3">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6 justify-content-center">
+
+      {{!-- <h2 class="text-black">Exercises</h2> --}}
+
+      <ul>
+        {{#each exercises}}
+        <li>
+          <p class="text-black">
+            {{this.Exercise}}
+            <button class="deletebutton btn btn-outline-primary" id="delete" data-id="{{id}}">Delete Exercise</button>
+          </p>
+        </li>
+
+        {{/each}}
+      </ul>
+    </div>
+
+
+    <div class="col-md-6 justify-content-center">
+      {{!-- <h2 class="text-black">Exercise Videos</h2> --}}
+
+      <ul>
+        {{#each exercises}}
+
+        <li>
+          <p class="text-black">
+            {{this.Exercise}}
+          </p>
+        </li>
+
+        {{/each}}
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
+<br>
+
+<div class="jumbotron text-center">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="text-black justify-content-center text-center">Add an exercise!</h2>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <form class="create-update-form justify-content-center">
+            <div class="form-group justify-content-center">
+              <label for="ca" class="text-black text-center"></label>
+              <textarea style="border-radius: 10px;" class="text-center" type="text" id="ca" name="exercise" placeholder="Type an Exercise here!"></textarea>
+              <button type="submit button" id="add" class="btn btn-lg btn-success mb-5">Create Exercise</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

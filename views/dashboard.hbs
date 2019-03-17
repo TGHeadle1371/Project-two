@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Hi,
+                {{# if loggedin}}
+                {{userName}}
+                {{/if}} Welcome to your Dashboard. You are a user!</h1>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>YouTube Data API Quickstart</p>
+                    <h3>Search for an exercise below!</h3>
+                    <hr>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12 col-md-offset-3">
+                            <form action="#">
+                                <p><input type="text" id="search" placeholder="Type something..." autocomplete="off"
+                                        class="form-control text-center" />
+                                </p>
+                                <p><input type="submit" value="Search" class="form-control btn btn-success w100"></p>
+                            </form>
+                            <div id="results"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

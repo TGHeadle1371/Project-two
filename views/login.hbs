@@ -1,16 +1,22 @@
-<div class="container row">
-    <div class="jumbotron col-sm-4 pull-center">
+<div class="container-fluid" style="min-height: 500px; white-space:nowrap">
+    <div class="jumbotron h-100">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Sign in and get <strong>Fit!</strong></h2>
+            </div>
+        </div>
+        <br>
         <form action="/login" method="post">
             <div>
-                <label>Username:</label>
-                <input type="text" name="username" />
+                <label style="font-size: 1.5em;">Username:</label>
+                <input style="min-width: 15%" type="text" name="username" />
             </div>
-            <div>
-                <label>Password:</label>
-                <input type="password" name="password" />
+            <div class="ml-1">
+                <label style="font-size: 1.5em;">Password:</label>
+                <input style="min-width: 15%" type="password" name="password" />
             </div>
-            <div>
-                <input class="btn btn-primary" type="submit" value="Log In" />
+            <div class="ml-5 pl-3">
+                <input class="btn btn-primary ml-5" type="submit" value="Log In" style="min-width: 15%" />
             </div>
         </form>
     </div>
