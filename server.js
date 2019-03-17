@@ -63,6 +63,9 @@ var sessionChecker = (req, res, next) => {
     }
 };
 
+//Routes
+require('./routes/exercise-api-routes.js')(app);
+
 
 // route for Home-Page
 app.get('/', sessionChecker, (req, res) => {
@@ -126,6 +129,21 @@ app.get('/dashboard', (req, res) => {
         hbsContent.title = "You are logged in";
         //res.sendFile(__dirname + '/public/dashboard.html');
         res.render('index', hbsContent);
+    } else {
+        res.redirect('/login');
+    }
+});
+
+// route for exercise
+app.get('/exercise', (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+        hbsContent.loggedin = true;
+        hbsContent.userName = req.session.user.username;
+        //console.log(JSON.stringify(req.session.user)); 
+        console.log(req.session.user.username);
+        hbsContent.title = "You are logged in";
+        //res.sendFile(__dirname + '/public/dashboard.html');
+        res.render('exercise', hbsContent);
     } else {
         res.redirect('/login');
     }

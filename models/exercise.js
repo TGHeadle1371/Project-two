@@ -1,6 +1,4 @@
 var Sequelize = require('sequelize');
-// Salted hash
-var bcrypt = require('bcrypt');
 
 var sequelize = new Sequelize('ourDatabase', 'root', 'Junior07!', {
     host: 'localhost',
@@ -14,8 +12,8 @@ var sequelize = new Sequelize('ourDatabase', 'root', 'Junior07!', {
     }
 });
 
-// Set up user table
-var User = sequelize.define('users', {
+// Set up exercise table
+var Exercise = sequelize.define("Exercise", {
     id: {
         type: Sequelize.INTEGER,
         unique: true,
@@ -23,25 +21,12 @@ var User = sequelize.define('users', {
         primaryKey: true,
         autoIncrement: true
     },
-    username: {
+    Exercise: {
         type: Sequelize.STRING,
-        unique: true,
         allowNull: false,
-    },
-    password: {
-        type: Sequelize.STRING,
-        allowNull: false
     }
 });
 
-User.beforeCreate((user, options) => {
-    const salt = bcrypt.genSaltSync();
-    user.password = bcrypt.hashSync(user.password, salt);
-});
-
-User.prototype.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
-};
 
 // Create all defined tables in the specified db
 var syncOptions = { force: true };
@@ -53,4 +38,4 @@ sequelize.sync(syncOptions)
 
 //export User module for other files
 
-module.exports = User;
+module.exports = Exercise;
