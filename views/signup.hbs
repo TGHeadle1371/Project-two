@@ -1,14 +1,17 @@
 <div class="container-fluid">
     <div class="jumbotron pull-center">
         <form action="/signup" method="post">
-            <div class="h3">Enter a Username and Password to signup!</div>
+            {{# if loggedin}}
+            <h2>You're already signed in, {{userName}}!</h2>
+            {{else}}
+            <div class="h3">Please fill out the inputs below to signup!</div>
             <div>
                 <label>Username:</label>
                 <input style="width: 15%" type="text" name="username" />
             </div>
             {{!-- <div>
-                <label>Email:</label>
-                <input type="text" name="email" />
+            <label>Email:</label>
+            <input type="text" name="email" />
             </div> --}}
             <div class="ml-1">
                 <label>Password:</label>
@@ -17,6 +20,7 @@
             <div>
                 <input class="btn btn-primary ml-5" type="submit" value="Sign Up" style="width: 10%" />
             </div>
+            {{/if}}
         </form>
     </div>
 </div>
