@@ -18,7 +18,9 @@ app.set('port', 9000);
 app.use(morgan('dev'));
 
 // initialize body-parser to parse incoming parameters requests to req.body
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 // initialize cookie-parser to allow us access the cookies stored in the browser. 
 app.use(cookieParser());
@@ -39,7 +41,11 @@ app.use(session({
 }));
 
 // handle bars config
-app.engine('hbs', hbs({ extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/' }));
+app.engine('hbs', hbs({
+    extname: 'hbs',
+    defaultLayout: 'layout',
+    layoutsDir: __dirname + '/views/layouts/'
+}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 // This middleware will check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
@@ -51,7 +57,12 @@ app.use((req, res, next) => {
     next();
 });
 
-var hbsContent = { userName: '', loggedin: false, title: "You are not logged in today", body: "Please login to continue!" };
+var hbsContent = {
+    userName: '',
+    loggedin: false,
+    title: "You are not logged in today",
+    body: "Please login to continue!"
+};
 
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
@@ -82,16 +93,20 @@ app.route('/signup')
     })
     .post((req, res) => {
         User.create({
-            username: req.body.username,
-            //email: req.body.email,
-            password: req.body.password
-        })
+                username: req.body.username,
+                //email: req.body.email,
+                password: req.body.password,
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                email: req.body.email
+            })
             .then(user => {
                 req.session.user = user.dataValues;
                 res.redirect('/dashboard');
             })
             .catch(error => {
-                res.redirect('/signup');
+                res.redirect('/signup')
+                console.log("Please enter a valid input")
             });
     });
 
@@ -106,7 +121,11 @@ app.route('/login')
         var username = req.body.username,
             password = req.body.password;
 
-        User.findOne({ where: { username: username } }).then(function (user) {
+        User.findOne({
+            where: {
+                username: username
+            }
+        }).then(function (user) {
             if (!user) {
                 res.redirect('/login');
             } else if (!user.validPassword(password)) {
