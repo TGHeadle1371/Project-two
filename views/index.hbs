@@ -8,13 +8,20 @@
             <div class="row">
                 <div class="col-lg-12">
                     <p>YouTube Data API Quickstart</p>
-                    <label>Add somewhere you like:</label>
-                    <input type="text" id="topic-input" class="form-control">
-                    <button type="submit" id="add" class="btn btn-default glyphicon glyphicon-search p-2">
-                        <strong>Add</strong></button>
-                    <iframe id="existing-iframe-example" width="640" height="360"
-                        src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" frameborder="0"
-                        style="border: solid 4px #37474F"></iframe>
+                    <h3>Search for an exercise below!</h3>
+                    <hr>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12 col-md-offset-3">
+                            <form action="#">
+                                <p><input type="text" id="search" placeholder="Type something..." autocomplete="off"
+                                        class="form-control" />
+                                </p>
+                                <p><input type="submit" value="Search" class="form-control btn btn-primary w100"></p>
+                            </form>
+                            <div id="results"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

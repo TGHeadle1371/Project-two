@@ -1,51 +1,52 @@
-var tag = document.createElement('script');
-tag.src = document.getElementById('topic-input').val().trim();
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+function tplawesome(e, t) {
+    res = e;
+    for (var n = 0; n < t.length; n++) {
+        res = res.replace(/\{\{(.*?)\}\}/g, function (e, r) {
+            return t[n][r]
+        })
+    }
+    return res
+}
 
-var player;
-
-function onYouTubeIframeAPIReady() {
-    var player;
-    player = new YT.Player('player', {
-        // videoId: 'M7lc1UVf-VE',
-        playerVars: {
-            'autoplay': 1,
-            'controls': 0
-        },
-        events: {
-            'onReady': onPlayerReady,
-            'onPlaybackQualityChange': onPlayerPlaybackQualityChange,
-            'onStateChange': onPlayerStateChange,
-            'onError': onPlayerError
-        }
+$(function () {
+    $("form").on("submit", function (e) {
+        e.preventDefault();
+        // prepare the request
+        var request = gapi.client.youtube.search.list({
+            part: "snippet",
+            type: "video",
+            q: encodeURIComponent($("#search").val()).replace(/%20/g, "+"),
+            maxResults: 3,
+            order: "viewCount",
+            publishedAfter: "2015-01-01T00:00:00Z"
+        });
+        // execute the request
+        request.execute(function (response) {
+            var results = response.result;
+            console.log(results);
+            $("#results").html("");
+            $.each(results.items, function (index, item) {
+                $.get("tpl/item.html", function (data) {
+                    $("#results").append(tplawesome(data, [{
+                        "title": item.snippet.title,
+                        "videoid": item.id.videoId
+                    }]));
+                });
+            });
+            resetVideoHeight();
+        });
     });
+
+    $(window).on("resize", resetVideoHeight);
+});
+
+function resetVideoHeight() {
+    $(".video").css("height", $("#results").width() * 9 / 16);
 }
 
-function onPlayerReady(event) {
-    document.getElementById('existing-iframe-example').style.borderColor = '#FF6D00';
-}
-
-function changeBorderColor(playerStatus) {
-    var color;
-    if (playerStatus == -1) {
-        color = "#37474F"; // unstarted = gray
-    } else if (playerStatus == 0) {
-        color = "#FFFF00"; // ended = yellow
-    } else if (playerStatus == 1) {
-        color = "#33691E"; // playing = green
-    } else if (playerStatus == 2) {
-        color = "#DD2C00"; // paused = red
-    } else if (playerStatus == 3) {
-        color = "#AA00FF"; // buffering = purple
-    } else if (playerStatus == 5) {
-        color = "#FF6DOO"; // video cued = orange
-    }
-    if (color) {
-        document.getElementById('existing-iframe-example').style.borderColor = color;
-    }
-}
-
-function onPlayerStateChange(event) {
-    changeBorderColor(event.data);
+function init() {
+    gapi.client.setApiKey("AIzaSyBJaXPrx1JWXOlubg-4efMl9AlysM2V-vE");
+    gapi.client.load("youtube", "v3", function () {
+        // yt api is ready
+    });
 }
