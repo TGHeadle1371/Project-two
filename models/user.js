@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 // Salted hash
 var bcrypt = require('bcrypt');
 
-var sequelize = new Sequelize('ourDatabase', 'root', 'Junior07!', {
+var sequelize = new Sequelize('ourDatabase', 'root', 'password', {
     host: 'localhost',
     port: 3306,
     dialect: 'mysql',
@@ -44,7 +44,14 @@ User.prototype.validPassword = function(password) {
 };
 
 // Create all defined tables in the specified db
-var syncOptions = { force: true };
+var syncOptions = {
+    force: false
+};
+
+if (process.env.NODE_ENV === "test") {
+    syncOptions.force = true;
+}
+
 
 sequelize.sync(syncOptions)
 .then(function (){
