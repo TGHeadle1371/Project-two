@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // Getting references to the name input and exercise container, as well as the table body
     var nameInput = $("#ca");
     var exerciseList = $("tbody");
@@ -19,10 +19,10 @@ $(document).ready(function() {
 
     // Function for retrieving exercises and getting them ready to be rendered to the page
     function getExercises() {
-        $.get("/api/exercise", function(data) {
+        $.get("/api/exercise", function (data) {
             var rowsToAdd = [];
             for (var i = 0; i < data.length; i++) {
-            rowsToAdd.push(createExerciseRow(data[i]));
+                rowsToAdd.push(createExerciseRow(data[i]));
             }
             renderExerciseList(rowsToAdd);
             nameInput.val("");
@@ -36,8 +36,7 @@ $(document).ready(function() {
         if (rows.length) {
             console.log(rows);
             exerciseList.prepend(rows);
-        }
-        else {
+        } else {
             renderEmpty();
         }
     }
@@ -55,9 +54,9 @@ $(document).ready(function() {
             type: "DELETE"
         }).then(
             function () {
-            // If the code experiences any errors it will log the error to the console.
-            if (error) {
-                return console.log(error);
+                // If the code experiences any errors it will log the error to the console.
+                if (error) {
+                    return console.log(error);
                 }
 
                 console.log("deleted" + id);
@@ -68,7 +67,7 @@ $(document).ready(function() {
     });
 
     $("#add").on("click", function (event) {
-    // Make sure to preventDefault on a submit event.
+        // Make sure to preventDefault on a submit event.
         event.preventDefault();
 
         var newExercise = {
@@ -81,9 +80,9 @@ $(document).ready(function() {
             data: newExercise
         }).then(
             function () {
-            // If the code experiences any errors it will log the error to the console.
-            if (error) {
-                return console.log(error);
+                // If the code experiences any errors it will log the error to the console.
+                if (error) {
+                    return console.log(error);
                 }
 
                 console.log("added " + newExercise + ".");
@@ -93,5 +92,3 @@ $(document).ready(function() {
         );
     });
 });
-  
-
