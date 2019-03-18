@@ -1,16 +1,10 @@
+// Dependencies
+// =============================================================
+
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('ourDatabase', 'root', 'password', {
-    host: 'localhost',
-    port: 3306,
-    dialect: 'mysql',
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    }
-});
+// sequelize (lowercase) references our connection to the DB.
+var sequelize = require("../config/connection.js");
 
 // Set up exercise table
 var Exercise = sequelize.define("Exercise", {
@@ -35,7 +29,7 @@ if (process.env.NODE_ENV === "test") {
     syncOptions.force = true;
 }
 
-sequelize.sync(syncOptions)
+Exercise.sync(syncOptions)
 .then(function (){
     console.log('User tables successfully created if one didn\'t already exist!');
 })

@@ -1,22 +1,30 @@
-var db = require("../models/exercise.js");
+// *********************************************************************************
+// api-routes.js - this file offers a set of routes for displaying and saving data to the db
+// *********************************************************************************
 
+// Dependencies
+// =============================================================
+
+var Exercise = require("../models/exercise.js");
+
+
+// Routes
+// =============================================================
 module.exports = function(app) {
-  app.get("/api/exercises", function(req, res) {
-    // Here we add an "include" property to our options in our findAll query
+  app.get("/api/exercise", function(req, res) {
+    // Here we add an "include" property to our options in our findAll query66
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Dashboard
-    db.Exercise.findAll({
-      //include: [db.Dashboard]
-    }).then(function(dbExercise) {
+    Exercise.findAll({}).then(function(dbExercise) {
       res.json(dbExercise);
     });
   });
 
-  app.get("/api/exercises/:id", function(req, res) {
+  app.get("/api/exercise/:id", function(req, res) {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Dashboard
-    db.Exercise.findOne({
+    Exercise.findOne({
       where: {
         id: req.params.id
       }
@@ -27,14 +35,14 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/exercises", function(req, res) {
-    db.Exercise.create(req.body).then(function(dbExercise) {
+  app.post("/api/exercise", function(req, res) {
+    Exercise.create(req.body).then(function(dbExercise) {
       res.json(dbExercise);
     });
   });
 
-  app.delete("/api/exercises/:id", function(req, res) {
-    db.Exercise.destroy({
+  app.delete("/api/exercise/:id", function(req, res) {
+    Exercise.destroy({
       where: {
         id: req.params.id
       }

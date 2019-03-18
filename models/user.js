@@ -2,17 +2,9 @@ var Sequelize = require('sequelize');
 // Salted hash
 var bcrypt = require('bcrypt');
 
-var sequelize = new Sequelize('ourDatabase', 'root', 'password', {
-    host: 'localhost',
-    port: 3306,
-    dialect: 'mysql',
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    }
-});
+// sequelize (lowercase) references our connection to the DB.
+var sequelize = require("../config/connection.js");
+
 
 // Set up user table
 var User = sequelize.define('users', {
@@ -35,7 +27,7 @@ var User = sequelize.define('users', {
     first_name: {
         type: Sequelize.STRING,
         // can NOT be NULL
-        allowNull: false,
+        allowNull: true,
         unique: true,
         // first name must be min  characters and max 30 characters
         validate: {
@@ -45,7 +37,7 @@ var User = sequelize.define('users', {
     last_name: {
         type: Sequelize.STRING,
         // can NOT be NULL
-        allowNull: false,
+        allowNull: true,
         unique: true,
         // lastname must be min 3 characters and max 30 characters
         validate: {
@@ -55,7 +47,7 @@ var User = sequelize.define('users', {
     email: {
         type: Sequelize.STRING,
         // can NOT be NULL
-        allowNull: false,
+        allowNull: true,
         unique: true,
         // EMAIL must be in the format (foo@bar.com)
         validate: {
