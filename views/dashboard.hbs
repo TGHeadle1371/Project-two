@@ -9,6 +9,17 @@
             <br>
             <div class="row">
                 <div class="col-lg-12">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+
+                        </tbody>
+                    </table>
+
                     <h3>To make changes, submit the form below!</h3>
                     <br>
                     <form>
@@ -30,7 +41,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputAddress2">Last Name:</label>
                                 <input type="text" class="form-control" id="inputAddress2"
-                                    placeholder="Apartment, studio, or floor">
+                                    placeholder="Last">
                             </div>
                         </div>
                         <div class="form-row">
@@ -47,3 +58,55 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    // Getting references to the name input and exercise container, as well as the table body
+    var nameInput = $("#inputFirstName");
+    var userList = $("tbody");
+    //var userContainer = $(".user-container");
+    // Getting the initial list of exercises
+    getUserData();
+    // Function for creating a new list row for exercises
+    function createUserRow(userData) {
+        var newTr = $("<tr>");
+        newTr.data("User", userData);
+        newTr.append("<h4>" + "Username: " + "<td>" + userData.username + "</td>" + "</h4>");
+        newTr.append("<h4>" + "Password: " + "<td>" + userData.password + "</td>" + "</h4>");
+        newTr.append("<h4>" + "First Name: " + "<td>" + userData.first_name + "</td>" + "</h4>");
+        newTr.append("<h4>" + "Last Name: " + "<td>" + userData.last_name + "</td>" + "</h4>");
+        newTr.append("<h4>" + "email: " + "<td>" + userData.email + "</td>" + "</h4>");
+        return newTr;
+    }
+    // Function for retrieving exercises and getting them ready to be rendered to the page
+    function getUserData() {
+        $.get("/api/User", function (data) {
+            var rowsToAdd = [];
+            for (var i = 0; i < data.length; i++) {
+                rowsToAdd.push(createUserRow(data[i]));
+            }
+            renderUserData(rowsToAdd);
+            nameInput.val("");
+        });
+    }
+    // A function for rendering the list of users to the page
+    function renderUserData(rows) {
+        userList.children().not(":last").remove();
+        console.log(rows);
+        userList.prepend(rows);
+    }
+    var updateUser = {
+        username: $("#changeUser").val().trim(),
+        password: $("#inputPassword4").val().trim(),
+        first_name: $("#inputFirstName").val().trim(),
+        last_name: $("#inputAddress2").val().trim(),
+        email: $("#inputEmail").val().trim(),
+    };
+    // Send the POST request.
+    $.ajax("/api/User", {
+        type: "POST",
+        data: updateUser
+    }).then(
+        function () {
+            getUserData();
+        }
+    );
+</script>

@@ -77,6 +77,7 @@ var sessionChecker = (req, res, next) => {
 
 //Routes
 require('./routes/exercise-api-routes.js')(app);
+require('./routes/user-api-routes.js')(app);
 
 
 // route for Home-Page
