@@ -144,7 +144,12 @@ app.route('/login')
 app.get('/dashboard', (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
         hbsContent.loggedin = true;
+        hbsContent.id = req.session.user.id;
         hbsContent.userName = req.session.user.username;
+        hbsContent.password = req.session.user.password;
+        hbsContent.first_name = req.session.user.first_name;
+        hbsContent.last_name = req.session.user.last_name;
+        hbsContent.email = req.session.user.email;
         //console.log(JSON.stringify(req.session.user)); 
         console.log(req.session.user.username);
         hbsContent.title = "You are logged in";
