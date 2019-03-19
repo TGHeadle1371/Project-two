@@ -5,7 +5,7 @@
 // Dependencies
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('ourDatabase', 'root', 'Junior07!', {
+var sequelize = new Sequelize('ourDatabase', 'root', 'password', {
     host: 'localhost',
     port: 3306,
     dialect: 'mysql',
