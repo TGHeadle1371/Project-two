@@ -162,9 +162,7 @@ app.get('/dashboard', (req, res) => {
 app.get('/exercise', (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
         hbsContent.loggedin = true;
-        hbsContent.userName = req.session.user.username;
-        hbsContent.userName = req.session.user.exercise;
-       
+        hbsContent.userName = req.session.user.username;       
 
         //console.log(JSON.stringify(req.session.user)); 
         console.log(req.session.user.username);
