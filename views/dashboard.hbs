@@ -12,7 +12,7 @@
 
                     {{# if loggedin}}
                     <h4>Username: {{userName}}</h4>
-                    <h4>Password: {{password}}</h4>
+                    {{!-- <h4>Password: {{password}}</h4> --}}
                     <h4>First name: {{first_name}}</h4>
                     <h4>Last name: {{last_name}}</h4>
                     <h4>Email: {{email}}</h3>
@@ -24,25 +24,25 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="changeUser">Username: </label>
-                                    <input type="text" class="form-control" data-id="{{id}}"
-                                        id="newUserName" placeholder="Username">
+                                    <input type="text" class="form-control" data-id="{{id}}" id="newUserName"
+                                        placeholder="Username">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4">Password: </label>
-                                    <input type="password" class="form-control" data-id="{{id}}"
-                                        id="newPassword" placeholder="Password">
+                                    <input type="password" class="form-control" data-id="{{id}}" id="newPassword"
+                                        placeholder="Password">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputFirstName">First Name:</label>
-                                    <input type="text" class="form-control" data-id="{{id}}"
-                                        id="newFirstName" placeholder="First">
+                                    <input type="text" class="form-control" data-id="{{id}}" id="newFirstName"
+                                        placeholder="First">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputAddress2">Last Name:</label>
-                                    <input type="text" class="form-control" data-id="{{id}}"
-                                        id="newLastName" placeholder="Last">
+                                    <input type="text" class="form-control" data-id="{{id}}" id="newLastName"
+                                        placeholder="Last">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -52,7 +52,7 @@
                                         placeholder="something@mail.com">
                                 </div>
                             </div>
-                            <button type="Submit" class="btn btn-success">Submit</button>
+                            <button type="Submit" method="POST" class="btn btn-success">Submit</button>
                         </form>
                 </div>
             </div>
@@ -94,5 +94,5 @@
                 }
             );
         });
-
+    });
 </script>

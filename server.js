@@ -96,7 +96,6 @@ app.route('/signup')
     .post((req, res) => {
         User.create({
                 username: req.body.username,
-                //email: req.body.email,
                 password: req.body.password,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
@@ -164,6 +163,9 @@ app.get('/exercise', (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
         hbsContent.loggedin = true;
         hbsContent.userName = req.session.user.username;
+        hbsContent.userName = req.session.user.exercise;
+       
+
         //console.log(JSON.stringify(req.session.user)); 
         console.log(req.session.user.username);
         hbsContent.title = "You are logged in";

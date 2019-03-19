@@ -23,6 +23,9 @@
             </tr>
           </thead>
           <tbody>
+              {{# if loggedin}}
+              {{exercise}}
+              {{/if}}
             <!-- Rendered Buttons will get Dumped Here  -->
             <div id="delete-exercise"></div>
           </tbody>
@@ -62,7 +65,7 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript">
+  {{!-- <script type="text/javascript">
     // Getting references to the name input and exercise container, as well as the table body
     var nameInput = $("#ca");
     var exerciseList = $("tbody");
@@ -129,4 +132,4 @@
         }
       );
     });
-  </script>
+  </script> --}}
