@@ -39,6 +39,7 @@ var User = sequelize.define('users', {
         // can NOT be NULL
         allowNull: true,
         unique: true
+
         // lastname must be min 3 characters and max 30 characters
         // validate: {
         //     len: [3, 30]
@@ -49,6 +50,7 @@ var User = sequelize.define('users', {
         // can NOT be NULL
         allowNull: true,
         unique: true
+
         // EMAIL must be in the format (foo@bar.com)
         // validate: {
         //     isEmail: true
@@ -67,7 +69,7 @@ User.prototype.validPassword = function (password) {
 
 // Create all defined tables in the specified db
 var syncOptions = {
-    force: false
+    force: true
 };
 
 if (process.env.NODE_ENV === "test") {
