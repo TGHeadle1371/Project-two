@@ -27,7 +27,7 @@ var User = sequelize.define('users', {
     first_name: {
         type: Sequelize.STRING,
         // can NOT be NULL
-        allowNull: true,
+        allowNull: false,
         unique: true,
         // first name must be min  characters and max 30 characters
         validate: {
@@ -37,7 +37,7 @@ var User = sequelize.define('users', {
     last_name: {
         type: Sequelize.STRING,
         // can NOT be NULL
-        allowNull: true,
+        allowNull: false,
         unique: true,
         // lastname must be min 3 characters and max 30 characters
         validate: {
@@ -47,7 +47,7 @@ var User = sequelize.define('users', {
     email: {
         type: Sequelize.STRING,
         // can NOT be NULL
-        allowNull: true,
+        allowNull: false,
         unique: true,
         // EMAIL must be in the format (foo@bar.com)
         validate: {
@@ -67,7 +67,7 @@ User.prototype.validPassword = function (password) {
 
 // Create all defined tables in the specified db
 var syncOptions = {
-    force: false
+    force: true
 };
 
 if (process.env.NODE_ENV === "test") {
