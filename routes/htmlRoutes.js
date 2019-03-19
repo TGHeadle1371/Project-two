@@ -63,7 +63,8 @@ module.exports = function (app) {
                 }
             }).then(function (user) {
                 if (!user) {
-                    res.redirect('/login');
+                    console.log("Please signup to continue!");
+                    res.redirect('/signup');
                 } else if (!user.validPassword(password)) {
                     res.redirect('/login');
                 } else {

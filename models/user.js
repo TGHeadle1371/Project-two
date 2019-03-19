@@ -27,32 +27,34 @@ var User = sequelize.define('users', {
     first_name: {
         type: Sequelize.STRING,
         // can NOT be NULL
-        allowNull: false,
-        unique: true,
+        allowNull: true,
+        unique: true
         // first name must be min  characters and max 30 characters
-        validate: {
-            len: [3, 30]
-        }
+        // validate: {
+        //     len: [3, 30]
+        // }
     },
     last_name: {
         type: Sequelize.STRING,
         // can NOT be NULL
-        allowNull: false,
-        unique: true,
+        allowNull: true,
+        unique: true
+
         // lastname must be min 3 characters and max 30 characters
-        validate: {
-            len: [3, 30]
-        }
+        // validate: {
+        //     len: [3, 30]
+        // }
     },
     email: {
         type: Sequelize.STRING,
         // can NOT be NULL
-        allowNull: false,
-        unique: true,
+        allowNull: true,
+        unique: true
+
         // EMAIL must be in the format (foo@bar.com)
-        validate: {
-            isEmail: true
-        }
+        // validate: {
+        //     isEmail: true
+        // }
     },
 });
 
