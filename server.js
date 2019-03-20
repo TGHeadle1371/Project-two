@@ -145,7 +145,6 @@ app.get('/dashboard', (req, res) => {
         hbsContent.loggedin = true;
         hbsContent.id = req.session.user.id;
         hbsContent.userName = req.session.user.username;
-        hbsContent.password = req.session.user.password;
         hbsContent.first_name = req.session.user.first_name;
         hbsContent.last_name = req.session.user.last_name;
         hbsContent.email = req.session.user.email;
