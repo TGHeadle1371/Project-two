@@ -23,18 +23,30 @@
         <div class="row mt-2" style="width: 100% ;">
             <div class="col-sm-12">
                 <nav class="nav navbar">
-                    <li><a class="nav-item nav-link text-secondary active" href="/"><font color= "white">Home</font></a>
+                    <li><a class="nav-item nav-link text-secondary active" href="/">
+                            <font color="white">Home</font>
+                        </a>
                     </li>
-                    <li><a class="nav-item nav-link text-secondary" href="/signup"><font color="white">Sign Up</font></a>
+                    <li><a class="nav-item nav-link text-secondary" href="/signup">
+                            <font color="white">Sign Up</font>
+                        </a>
                     </li>
-                    <li><a class="nav-item nav-link text-secondary" href="/dashboard"><font color="white">Dashboard</font></a>
+                    <li><a class="nav-item nav-link text-secondary" href="/dashboard">
+                            <font color="white">Dashboard</font>
+                        </a>
                     </li>
                     <h1 class="text-center"><strong>FITNESS IN MIND</strong></h1>
-                    <li><a class="nav-item nav-link text-secondary" href="/exercise"><font color="white">Exercise</font></a>
+                    <li><a class="nav-item nav-link text-secondary" href="/exercise">
+                            <font color="white">Exercise</font>
+                        </a>
                     </li>
-                    <li><a class="nav-item nav-link text-secondary" href="/login"><font color="white">Log In</font></a>
+                    <li><a class="nav-item nav-link text-secondary" href="/login">
+                            <font color="white">Log In</font>
+                        </a>
                     </li>
-                    <li><a class="nav-item nav-link text-secondary" href="/logout"><font color="white">Log Out</font></a>
+                    <li><a class="nav-item nav-link text-secondary" href="/logout">
+                            <font color="white">Log Out</font>
+                        </a>
                     </li>
                 </nav>
             </div>
@@ -56,14 +68,15 @@
         crossorigin="anonymous"></script>
     {{!-- Google api --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     {{!-- JS Scripts --}}
-    <script src="/js/auth.js"></script>
     <script src="/js/video.js"></script>
-    <script src="/js/dashboard.js"></script>
     <script src="/js/exercise.js"></script>
 
     {{!-- Google API --}}
+    <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+        </script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
 
 </body>
