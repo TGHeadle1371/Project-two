@@ -41,6 +41,22 @@ module.exports = function (app) {
         });
     });
 
+    app.put("/api/User/:id", function (req, res) {
+        User.update({
+            where: {
+                id: req.params.id
+            },
+            username: req.body.username,
+            password: req.body.password,
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email
+        }).then(function (dbUser) {
+            res.json(dbUser);
+        });
+    });
+
+
     app.delete("/api/User/:id", function (req, res) {
         User.destroy({
             where: {
