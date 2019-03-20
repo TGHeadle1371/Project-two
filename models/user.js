@@ -66,10 +66,10 @@ User.beforeCreate((user, options) => {
 User.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 };
-
+// When in localhost need to turn to true to add users to table
 // Create all defined tables in the specified db
 var syncOptions = {
-    force: false
+    force: true
 };
 
 if (process.env.NODE_ENV === "test") {
