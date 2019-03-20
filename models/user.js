@@ -69,7 +69,7 @@ User.prototype.validPassword = function (password) {
 
 // Create all defined tables in the specified db
 var syncOptions = {
-    force: true
+    force: false
 };
 
 if (process.env.NODE_ENV === "test") {
