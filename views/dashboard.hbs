@@ -25,36 +25,37 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="changeUser">Username: </label>
-                                    <input type="text" class="form-control" data-id="{{id}}" id="newUserName"
-                                        placeholder="Username">
+                                    <input type="text" class="form-control" name="username" data-id="{{id}}"
+                                        id="newUserName" placeholder="Username">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4">Password: </label>
-                                    <input type="password" class="form-control" data-id="{{id}}" id="newPassword"
-                                        placeholder="Password">
+                                    <input type="password" class="form-control" name="password" data-id="{{id}}"
+                                        id="newPassword" placeholder="Password">
                                 </div>
 
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputFirstName">First Name:</label>
-                                    <input type="text" class="form-control" data-id="{{id}}" id="newFirstName"
-                                        placeholder="First">
+                                    <input type="text" class="form-control" data-id="{{id}}" name="first_name"
+                                        id="newFirstName" placeholder="First">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputAddress2">Last Name:</label>
-                                    <input type="text" class="form-control" data-id="{{id}}" id="newLastName"
-                                        placeholder="Last">
+                                    <input type="text" class="form-control" data-id="{{id}}" name="last_name"
+                                        id="newLastName" placeholder="Last">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail">Email Address:</label>
-                                    <input type="email" class="form-control" data-id="{{id}}" id="newEmail"
+                                    <input type="email" class="form-control" name="email" data-id="{{id}}" id="newEmail"
                                         placeholder="something@mail.com">
                                 </div>
                             </div>
-                            <button type="Submit" method="POST" class="btn btn-success">Submit</button>
+                            <button data-id="{{id}}" id="search-button" type="Submit" method="POST"
+                                class="btn btn-success">Submit</button>
                         </form>
                 </div>
             </div>
@@ -63,13 +64,14 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        $("#search-button").on("click", function (event) {
+        $("#search-button").on("click", function (event, err) {
+            event.preventDefault();
             var id = $(this).data("id");
-            var newUserName = $(this).data("newUserName")
-            var newPassword = $(this).data("newPassword");
-            var newFirstName = $(this).data("FirstName");
-            var newLastName = $(this).data("LastName");
-            var newEmail = $(this).data("newEmail");
+            var newUserName = $("#newUserName").val().trim();
+            var newPassword = $("#newPassword").val().trim();
+            var newFirstName = $("#newFirstName").val().trim();
+            var newLastName = $("#newLastName").val().trim();
+            var newEmail = $("#newEmail").val().trim();
 
             var updateUser = {
                 username: $("#newUserName").val().trim(),
@@ -79,20 +81,27 @@
                 email: $("#newEmail").val().trim(),
             }
 
-
             // Send the Post request.
-            $.ajax("/api/users/" + id, {
-                type: "POST",
+            $.ajax("/api/User/" + id, {
+                type: "PUT",
                 data: updateUser
             }).then(
                 function () {
-                    console.log("Changed Username to ", newUserName);
-                    console.log("Changed Password");
-                    console.log("Changed First Name to ", FirstName);
-                    console.log("Changed Last Name to ", LastName);
-                    console.log("Changed Email to ", email);
-                    // Reload the page to get the updated list
-                    location.reload();
+                    if (err) {
+                        // If no rows were changed, then the ID must not exist, so 404
+                        return res.status(404).end();
+                        console.log(updateUser);
+                        console.log(err);
+                    } else {
+                        res.status(200).end();
+                        console.log("Changed Username to ", newUserName);
+                        console.log("Changed Password");
+                        console.log("Changed First Name to ", FirstName);
+                        console.log("Changed Last Name to ", LastName);
+                        console.log("Changed Email to ", email);
+                        // Reload the page to get the updated list
+                        location.reload();
+                    }
                 }
             );
         });
