@@ -37,3 +37,8 @@ h1,
    margin-left: auto;
    margin-right: auto;
 }
+/* Footer style */
+.copyright{
+   opacity: .4;
+   margin-bottom: -12px;
+}
