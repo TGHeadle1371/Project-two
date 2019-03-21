@@ -7,13 +7,13 @@ var morgan = require('morgan');
 var User = require('./models/user');
 var hbs = require('express-handlebars');
 var path = require('path');
-
+var PORT = process.env.PORT || 3000;
 
 // invoke an instance of express application.
 var app = express();
 
 // set our application port
-app.set('port', 9000);
+//app.set('port', 9000);
 
 // set morgan to log info about our requests for development use.
 app.use(morgan('dev'));
@@ -194,4 +194,11 @@ app.use(function (req, res, next) {
 
 
 // start the express server
-app.listen(app.get('port'), () => console.log(`App started on port ${app.get('port')}`));
+//app.listen(app.get('port'), () => console.log(`App started on port ${app.get('port')}`));
+
+// Start our server so that it can begin listening to client requests.
+app.listen(PORT, function() {
+    // Log (server-side) when our server has started
+    console.log("Server listening on: http://localhost:" + PORT);
+  });
+  
