@@ -3,7 +3,7 @@
 // *********************************************************************************
 
 // Require mysql
-var mysql = require("mysql");
+/*var mysql = require("mysql");
 var connection;
 
 // Set up our connection information
@@ -15,8 +15,8 @@ else{
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "Junior07!",
-  database: "ourDatabase"
+  password: "406Megalodon",
+  database: "exampledb"
 });
 
 }
@@ -31,4 +31,4 @@ connection.connect(function(err) {
 });
 
 // Export connection
-module.exports = connection;
+module.exports = connection;*/
