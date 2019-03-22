@@ -23,7 +23,7 @@ var Exercise = sequelize.define("Exercise", {
     }
 });
 
-var Exercise = connection.define("Exercise", {
+var Exercise = sequelize.define("Exercise", {
     id: {
         type: Sequelize.INTEGER,
         unique: true,
