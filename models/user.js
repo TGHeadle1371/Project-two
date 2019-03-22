@@ -5,7 +5,6 @@ var bcrypt = require('bcrypt');
 // sequelize (lowercase) references our connection to the DB.
 var sequelize = require("../config/connection.js");
 
-
 // Set up user table
 var User = sequelize.define('users', {
     id: {

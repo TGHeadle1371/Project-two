@@ -6,7 +6,6 @@ var Sequelize = require('sequelize');
 // sequelize (lowercase) references our connection to the DB.
 var sequelize = require("../config/connection.js");
 
-
 // Set up exercise table
 var Exercise = sequelize.define("Exercise", {
     id: {
