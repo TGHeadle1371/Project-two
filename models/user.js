@@ -59,6 +59,59 @@ var User = sequelize.define('users', {
     },
 });
 
+// Set up user table
+var User = connection.define('users', {
+    id: {
+        type: Sequelize.INTEGER,
+        unique: true,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    username: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false,
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    first_name: {
+        type: Sequelize.STRING,
+        // can NOT be NULL
+        allowNull: true,
+        unique: true
+        // first name must be min  characters and max 30 characters
+        // validate: {
+        //     len: [3, 30]
+        // }
+    },
+    last_name: {
+        type: Sequelize.STRING,
+        // can NOT be NULL
+        allowNull: true,
+        unique: true
+
+        // lastname must be min 3 characters and max 30 characters
+        // validate: {
+        //     len: [3, 30]
+        // }
+    },
+    email: {
+        type: Sequelize.STRING,
+        // can NOT be NULL
+        allowNull: true,
+        unique: true
+
+        // EMAIL must be in the format (foo@bar.com)
+        // validate: {
+        //     isEmail: true
+        // }
+    },
+});
+
+
 User.beforeCreate((user, options) => {
     const salt = bcrypt.genSaltSync();
     user.password = bcrypt.hashSync(user.password, salt);
@@ -79,6 +132,11 @@ if (process.env.NODE_ENV === "test") {
 
 
 sequelize.sync(syncOptions)
+    .then(function () {
+        console.log('User tables successfully created if one didn\'t already exist!');
+    })
+
+connection.sync(syncOptions)
     .then(function () {
         console.log('User tables successfully created if one didn\'t already exist!');
     })

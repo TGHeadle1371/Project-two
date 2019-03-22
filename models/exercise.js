@@ -23,6 +23,19 @@ var Exercise = sequelize.define("Exercise", {
     }
 });
 
+var Exercise = connection.define("Exercise", {
+    id: {
+        type: Sequelize.INTEGER,
+        unique: true,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    Exercise: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    }
+});
 
 // Create all defined tables in the specified db
 var syncOptions = { force: false };
@@ -35,6 +48,8 @@ Exercise.sync(syncOptions)
 .then(function (){
     console.log('User tables successfully created if one didn\'t already exist!');
 })
+
+
 
 //export User module for other files
 

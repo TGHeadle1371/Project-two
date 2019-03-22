@@ -23,3 +23,5 @@ if (config.use_env_variable) {
   };
 // Exports the connection for other files to use
 module.exports = sequelize;
+
+
