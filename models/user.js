@@ -60,7 +60,7 @@ var User = sequelize.define('users', {
 });
 
 // Set up user table
-var User = connection.define('users', {
+var User = sequelize.define('users', {
     id: {
         type: Sequelize.INTEGER,
         unique: true,
@@ -136,7 +136,7 @@ sequelize.sync(syncOptions)
         console.log('User tables successfully created if one didn\'t already exist!');
     })
 
-connection.sync(syncOptions)
+sequelize.sync(syncOptions)
     .then(function () {
         console.log('User tables successfully created if one didn\'t already exist!');
     })
