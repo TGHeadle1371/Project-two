@@ -1,8 +1,32 @@
+
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "exampledb",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "testdb",
+    "host": "localhost",
+    "dialect": "mysql",
+    "logging": false
+  },
+  "production": {
+    "use_env_variable": "JAWSDB_URL",
+    "dialect": "mysql"
+  }
+
+
 {
   "name": "expresslogin",
   "version": "1.0.0",
   "description": "Node Express Handlebars login with bcrypt",
   "main": "server.js",
+  "password": "406Megalodon",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
