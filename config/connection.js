@@ -3,19 +3,23 @@
 // *********************************************************************************
 
 // Dependencies
-var Sequelize = require('sequelize');
+var fs = require("fs");
+var path = require("path");
+var Sequelize = require("sequelize");
+var basename = path.basename(module.filename);
+var env = process.env.NODE_ENV || "development";
+var config = require(__dirname + "/../config/config.json")[env];
+var db = {};
 
-var sequelize = new Sequelize('ourDatabase', 'root', 'Junior07!', {
-    host: 'localhost',
-    port: 3306,
-    dialect: 'mysql',
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    }
-});
-
+if (config.use_env_variable) {
+ var sequelize = new Sequelize(process.env.JAWSDB_URL);
+} else {
+  var sequelize = new Sequelize(
+    config.database,
+    config.username,
+    config.password,
+    config
+  );
+  };
 // Exports the connection for other files to use
 module.exports = sequelize;
