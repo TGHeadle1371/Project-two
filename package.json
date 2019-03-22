@@ -1,4 +1,3 @@
-
 {
   "development": {
     "username": "root",
@@ -22,7 +21,6 @@
     "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
   },
-
   "name": "expresslogin",
   "version": "1.0.0",
   "description": "Node Express Handlebars login with bcrypt",
