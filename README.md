@@ -38,10 +38,6 @@ What things you need to install the software and how to install them
         * Go to the http://localhost:3000/ to enjoy the app!
 
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
 ## Versioning
 
 This is the first version of our app. Please review!
