@@ -5,7 +5,7 @@ var Sequelize = require('sequelize');
 
 // sequelize (lowercase) references our connection to the DB.
 var sequelize = require("../config/connection.js");
-var connection = require("../config/connectionMySql.js")
+//var connection = require("../config/connectionMySql.js")
 
 
 // Set up exercise table
@@ -23,7 +23,7 @@ var Exercise = sequelize.define("Exercise", {
     }
 });
 
-var Exercise = connection.define("Exercise", {
+var Exercise = sequelize.define("Exercise", {
     id: {
         type: Sequelize.INTEGER,
         unique: true,
